@@ -1,11 +1,20 @@
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true, 
+  };
+
 const express = require('express');
 const body_parser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require(corsOptions);
 const SERVER_PORT = 8081
+
+
 
 const app = express();
 const apiV1 = express();
-app.use(express.json());
+app.use(cors({ origin: true, credentials: true }));
+app.use(express.json({ extended: false }));
 app.use(body_parser.json());
 
 const userRoute = require('./routes/user');
